@@ -1,4 +1,4 @@
 # ParallaxDemo
+Interactive parallax simulation using CoreAnimation.
 
-
-<img src="https://github.com/medenzon/ParallaxDemo/blob/master/demo.gif" width="200px"></img>
+<img src="https://github.com/medenzon/ParallaxDemo/blob/master/demo.gif" width="100%"></img>
