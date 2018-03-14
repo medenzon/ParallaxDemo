@@ -12,6 +12,9 @@
 		ADB829172058BD1200DE36A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB829152058BD1200DE36A5 /* Main.storyboard */; };
 		ADB829192058BD1200DE36A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB829182058BD1200DE36A5 /* Assets.xcassets */; };
 		ADB8291C2058BD1200DE36A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB8291A2058BD1200DE36A5 /* LaunchScreen.storyboard */; };
+		ADB829242058BD2100DE36A5 /* ParallaxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB829232058BD2100DE36A5 /* ParallaxButton.swift */; };
+		ADC40E442058C0CE001CF552 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC40E432058C0CE001CF552 /* Extensions.swift */; };
+		ADC40E462058CE53001CF552 /* HapticButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC40E452058CE53001CF552 /* HapticButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		ADB829182058BD1200DE36A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADB8291B2058BD1200DE36A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADB8291D2058BD1200DE36A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADB829232058BD2100DE36A5 /* ParallaxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallaxButton.swift; sourceTree = "<group>"; };
+		ADC40E432058C0CE001CF552 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		ADC40E452058CE53001CF552 /* HapticButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,9 @@
 			children = (
 				ADB829112058BD1200DE36A5 /* AppDelegate.swift */,
 				ADB829132058BD1200DE36A5 /* ViewController.swift */,
+				ADB829232058BD2100DE36A5 /* ParallaxButton.swift */,
+				ADC40E452058CE53001CF552 /* HapticButton.swift */,
+				ADC40E432058C0CE001CF552 /* Extensions.swift */,
 				ADB829152058BD1200DE36A5 /* Main.storyboard */,
 				ADB829182058BD1200DE36A5 /* Assets.xcassets */,
 				ADB8291A2058BD1200DE36A5 /* LaunchScreen.storyboard */,
@@ -137,7 +146,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADB829142058BD1200DE36A5 /* ViewController.swift in Sources */,
+				ADC40E462058CE53001CF552 /* HapticButton.swift in Sources */,
 				ADB829122058BD1200DE36A5 /* AppDelegate.swift in Sources */,
+				ADB829242058BD2100DE36A5 /* ParallaxButton.swift in Sources */,
+				ADC40E442058C0CE001CF552 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
