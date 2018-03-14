@@ -15,7 +15,7 @@ class ParallaxButton: HapticButton {
     
     var activeViews: [UIView] = []
     
-    let multiplier: CGFloat = 10
+    let multiplier: CGFloat = 15
     let scaleUp = CATransform3DMakeScale(1.0, 1.0, 1.0)
     let scaleDown = CATransform3DMakeScale(1.0, 1.0, 1.0)
     
@@ -23,18 +23,23 @@ class ParallaxButton: HapticButton {
         super.init(frame: frame)
         self.radius = frame.width / 30
         containerView = UIView(frame: bounds)
+        self.layer.masksToBounds = true
         addSubview(containerView)
     }
     
     convenience init(frame: CGRect, layers views: [UIView]) {
         self.init(frame: frame)
         for view in views {
-            view.frame = bounds
-            view.clipsToBounds = true
+            let width = bounds.width * 1.25
+            let height = bounds.height * 1.25
+            let x = 0 - ((width - frame.width) / 2)
+            let y = 0 - ((height - frame.height) / 2)
+            view.frame = CGRect(x: x, y: y, width: width, height: height)
             view.layer.cornerRadius = self.radius
             containerView.addSubview(view)
             activeViews.append(view)
         }
+        activeViews.removeLast()
         setupLayer()
     }
     
@@ -51,14 +56,13 @@ class ParallaxButton: HapticButton {
         }
     }
     
-    private func parallaxOffset(from touch: UITouch?) -> Offset {
-        let touchPoint = touch!.preciseLocation(in: superview)
+    private func offset(_ point: CGPoint) -> Offset {
         let width = superview!.bounds.width
         let height = superview!.bounds.height
-        return Offset(x: (0.5 - touchPoint.x / width) * -1, y: (0.5 - touchPoint.y / height) * -1)
+        return Offset(x: (0.5 - point.x / width) * -1, y: (0.5 - point.y / height) * -1)
     }
     
-    private func parallaxTransform(with offset: Offset) -> CATransform3D {
+    private func transform(_ offset: Offset) -> CATransform3D {
         var transform = scaleUp
         transform.m34 = 1.0/(-500)
         let angle = Angle(x: (offset.x * 15) * (.pi/180), y: (offset.y * 15) * (.pi/180))
@@ -66,10 +70,12 @@ class ParallaxButton: HapticButton {
         return CATransform3DRotate(transform, angle.y, (0.5 - offset.y) * 2, 0, 0)
     }
     
-    private func parallax(with touch: UITouch?) {
-        let offset = parallaxOffset(from: touch)
-        layer.transform = parallaxTransform(with: offset)
-        parallaxSubviews(with: Offset(x: offset.x, y: offset.y))
+    private func parallax(touches: [UITouch]) {
+        for touch in touches {
+            let offset = self.offset(touch.preciseLocation(in: superview))
+            layer.transform = transform(offset)
+            parallaxSubviews(with: offset)
+        }
     }
     
     private func removeParallax() {
@@ -82,7 +88,8 @@ class ParallaxButton: HapticButton {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        parallax(with: touches.first)
+        guard let touch = touches.first else { return }
+        parallax(touches: (event?.coalescedTouches(for: touch))!)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -92,7 +99,6 @@ class ParallaxButton: HapticButton {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         removeParallax()
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

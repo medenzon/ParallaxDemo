@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    override var shouldAutorotate: Bool { return false }
+    override var prefersStatusBarHidden: Bool { return true }
+    
     var parallaxButtonLayers: [UIView] {
         get {
             return [UIImageView(image: UIImage(named: "layer1.png")),
@@ -25,8 +28,10 @@ class ViewController: UIViewController {
     
     func addParallaxButton() {
         
+        let aspectRatio = CGFloat(2400.0 / 3840.0)
+        
         let width: CGFloat = 250
-        let height: CGFloat = 125
+        let height: CGFloat = width * aspectRatio
         
         let x = view.center.x - (width / 2)
         let y = view.center.y - (height / 2)
@@ -42,7 +47,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
